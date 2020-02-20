@@ -1,6 +1,11 @@
-[2020-02-20 00:20:33] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10"}
-[2020-02-20 00:20:33] {"host":"localhost","port":"9875"}
-[2020-02-20 00:20:33] "Server listening at :::9875"
-[2020-02-20 00:20:38] "Adding user"
-[2020-02-20 00:20:38] {"username":"testUser12","email":"validEmail@gmail.com","is_active":1,"account_type":5}
-[2020-02-20 00:20:38] "Registering testUser12 to db"
+[2020-02-20 06:37:01] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-02-20 06:37:01] {"host":"localhost","port":"9875"}
+[2020-02-20 06:37:01] "Server listening at :::9875"
+[2020-02-20 06:37:02] "Get all tags"
+[2020-02-20 06:37:06] "Create tag"
+[2020-02-20 06:37:06] {"tag_name":"urgent2"}
+[2020-02-20 06:37:06] "Creating tag:urgent2"
+[2020-02-20 06:37:06] {"message":"Duplicate entry 'urgent2' for key 'tags.tag_name'","errno":1062,"sql":"INSERT INTO tags(tag_name) VALUES('urgent2')"}
+[2020-02-20 06:37:13] "Create tag"
+[2020-02-20 06:37:13] {"tag_name":"URgent2"}
+[2020-02-20 06:37:13] "Creating tag:URgent2"
