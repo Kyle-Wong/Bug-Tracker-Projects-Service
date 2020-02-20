@@ -1,0 +1,15 @@
+{
+    "dbConfig":{
+        "host": "localhost",
+        "user": "root",
+        "password": "Hybrid023k",
+        "port": "3306",
+        "database": "bt_projects",
+        "connectionLimit": "10"
+    },
+    
+    "serverConfig":{
+        "host": "localhost",
+        "port": "9875"
+    }
+}

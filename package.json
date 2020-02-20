@@ -1,0 +1,22 @@
+{
+  "name": "nodejstest",
+  "version": "1.0.0",
+  "description": "Test",
+  "main": "TestServer.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.2.5",
+    "cookie-parser": "^1.4.4",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "mysql": "^2.18.1",
+    "util": "^0.12.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

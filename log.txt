@@ -1,0 +1,6 @@
+[2020-02-20 00:20:33] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10"}
+[2020-02-20 00:20:33] {"host":"localhost","port":"9875"}
+[2020-02-20 00:20:33] "Server listening at :::9875"
+[2020-02-20 00:20:38] "Adding user"
+[2020-02-20 00:20:38] {"username":"testUser12","email":"validEmail@gmail.com","is_active":1,"account_type":5}
+[2020-02-20 00:20:38] "Registering testUser12 to db"
