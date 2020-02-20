@@ -5,7 +5,8 @@
         "password": "Hybrid023k",
         "port": "3306",
         "database": "bt_projects",
-        "connectionLimit": "10"
+        "connectionLimit": "10",
+        "multipleStatements": true
     },
     
     "serverConfig":{

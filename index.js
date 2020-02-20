@@ -40,7 +40,6 @@ var server = app.listen(serverConfig.port, function(){
 })
 app.post('/addUser', function(req,res){
   logger.log("Adding user");
-  console.log(req);
   body = req.body;
   logger.log(body);
   project.addUser(pool,new ResponseBuilder(res),body.username,body.email,body.is_active,body.account_type);
@@ -50,6 +49,7 @@ app.post('/createProject', function(req,res){
   logger.log("Create Project")
   body = req.body;
   logger.log(req.body);
+  project.createProject(pool, new ResponseBuilder(res),body.username,body.project_name);
 });
 
 

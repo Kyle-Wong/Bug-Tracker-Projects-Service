@@ -5,7 +5,8 @@ const maxPasswordLength = 32; //inclusive
 const maxEmailLength = 32;
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const tokenLength = 32;
-
+const minProjectnameLength = 1;
+const maxProjectNameLength = 32;
 
 
 exports.DONE = 0;
@@ -68,4 +69,7 @@ exports.validToken = function(token){
 exports.validProjectName = function(projectName){
     if(typeof projectName != 'string')
         return 403;
+    if(projectName.length < minProjectnameLength || projectName.length > maxProjectNameLength)
+        return 401;
+    return 0;
 }
