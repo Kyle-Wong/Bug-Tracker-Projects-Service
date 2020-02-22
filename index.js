@@ -83,3 +83,56 @@ app.post('/addBug', async function(req,res){
     new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
   }
 });
+
+app.post('/deleteBug', async function(req, res){
+  logger.log("Deleting bug");
+  var body = req.body;
+  var headers = req.headers;
+  logger.log(body);
+  const validAccessLevel = await project.verifyAccessLevel(headers.username,body.project_id,project.accessLevel.edit);
+  if(validAccessLevel){
+    bugs.deleteBug(new ResponseBuilder(res), body.bug_id);
+  } else {
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
+});
+
+app.post('/resolveBug', async function(req, res){
+  logger.log("Resolving bug");
+  var body = req.body;
+  var headers = req.headers;
+  logger.log(body);
+  const validAccessLevel = await project.verifyAccessLevel(headers.username,body.project_id,project.accessLevel.edit);
+  if(validAccessLevel){
+    bugs.resolveBug(new ResponseBuilder(res),body.bug_id);
+  } else {
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
+});
+
+app.post('/assignBugToUser', async function(req,res){
+  logger.log("assigning bug to user");
+  var body = req.body;
+  var headers = req.headers;
+  logger.log(body);
+  const validAccessLevel = await project.verifyAccessLevel(headers.username,body.project_id,project.accessLevel.edit);
+  if(validAccessLevel){
+    bugs.assignBugToUser(new ResponseBuilder(res),headers.username,body.bug_id);
+  } else {
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
+});
+
+app.post('/removeBugFromUser', async function(req, res){
+  logger.log("Removing bug from user");
+  var body = req.body;
+  var headers = req.headers;
+  logger.log(body);
+  const validAccessLevel = await project.verifyAccessLevel(headers.username,body.project_id,project.accessLevel.edit);
+  if(validAccessLevel){
+    bugs.removeBugFromUser(new ResponseBuilder(res),body.bug_id);
+  } else {
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
+});
+

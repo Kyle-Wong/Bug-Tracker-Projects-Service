@@ -1,7 +1,16 @@
-[2020-02-22 00:58:51] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
-[2020-02-22 00:58:51] {"host":"localhost","port":"9875"}
-[2020-02-22 00:58:51] "Server listening at :::9875"
-[2020-02-22 00:58:52] "Adding bug"
-[2020-02-22 00:58:52] {"project_id":18,"title":"Text is wrong color","body":"The text of the website is green, not red","priority":5,"tags":["another bug","colors","WTF"]}
-[2020-02-22 00:58:52] "Checking access level for testUser3--required=1"
-[2020-02-22 00:58:52] "Insufficient Access--2 (1 required)"
+[2020-02-22 23:26:39] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-02-22 23:26:39] {"host":"localhost","port":"9875"}
+[2020-02-22 23:26:39] "Server listening at :::9875"
+[2020-02-22 23:26:41] "assigning bug to user"
+[2020-02-22 23:26:41] {"project_id":18,"bug_id":20,"username":"testUser2"}
+[2020-02-22 23:26:41] "Checking access level for testUser1--required=1"
+[2020-02-22 23:26:41] "Sufficient Access"
+[2020-02-22 23:26:41] {"message":"Duplicate entry 'testUser1-20' for key 'userbugs.PRIMARY'","errno":1062,"sql":"INSERT INTO userbugs(username, bug_id) VALUES ('testUser1',20);"}
+[2020-02-22 23:28:05] {"project_id":18,"bug_id":20,"username":"testUser2"}
+[2020-02-22 23:28:05] "Checking access level for testUser1--required=1"
+[2020-02-22 23:28:05] "Removing bug from user"
+[2020-02-22 23:28:05] "Sufficient Access"
+[2020-02-22 23:28:07] "Removing bug from user"
+[2020-02-22 23:28:07] {"project_id":18,"bug_id":20,"username":"testUser2"}
+[2020-02-22 23:28:07] "Checking access level for testUser1--required=1"
+[2020-02-22 23:28:07] "Sufficient Access"

@@ -15,6 +15,7 @@ exports.SESSION_NOT_FOUND = 408;
 exports.SESSION_IS_CLOSED = 409;
 exports.PROJECT_NOT_FOUND = 410;
 exports.INSUFFICIENT_ACCESS = 411;
+exports.USER_ALREADY_ASSIGNED = 412;
 
 exports.errorCode = 
 {
@@ -33,6 +34,7 @@ exports.errorCode =
     409:"Session is closed",
     410:"Project not found",
     411:"Insufficient Access Level",
+    412:"User already assigned to bug",
 }
 exports.validUsername = function(username){
     if(typeof username != 'string')
