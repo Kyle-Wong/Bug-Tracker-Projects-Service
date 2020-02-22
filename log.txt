@@ -1,5 +1,7 @@
-[2020-02-22 00:19:39] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
-[2020-02-22 00:19:39] {"host":"localhost","port":"9875"}
-[2020-02-22 00:19:39] "Server listening at :::9875"
-[2020-02-22 00:19:41] "Adding bug"
-[2020-02-22 00:19:41] {"project_id":18,"title":"Text is wrong color","body":"The text of the website is green, not red","priority":5,"tags":["another bug","colors","WTF"]}
+[2020-02-22 00:58:51] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-02-22 00:58:51] {"host":"localhost","port":"9875"}
+[2020-02-22 00:58:51] "Server listening at :::9875"
+[2020-02-22 00:58:52] "Adding bug"
+[2020-02-22 00:58:52] {"project_id":18,"title":"Text is wrong color","body":"The text of the website is green, not red","priority":5,"tags":["another bug","colors","WTF"]}
+[2020-02-22 00:58:52] "Checking access level for testUser3--required=1"
+[2020-02-22 00:58:52] "Insufficient Access--2 (1 required)"

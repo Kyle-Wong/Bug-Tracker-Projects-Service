@@ -23,7 +23,7 @@ app.use(bodyParser.json())
 const project = require('./project');
 const tags = require('./tags');
 const bugs = require('./bugs');
-
+const errors = require('./errors');
 
 
 
@@ -70,13 +70,16 @@ app.post('/createTag', function(req,res){
 });
 
 //bugs
-app.post('/addBug', function(req,res){
+app.post('/addBug', async function(req,res){
   logger.log("Adding bug");
+
   var body = req.body;
   var headers = req.headers;
   logger.log(body);
-  bugs.addBug(new ResponseBuilder(res),headers.username,body.project_id,body.title,body.body,body.priority,body.tags);
+  const hasProjectAccess = await project.verifyAccessLevel(headers.username,body.project_id, project.accessLevel.edit);
+  if(hasProjectAccess){
+    bugs.addBug(new ResponseBuilder(res),headers.username,body.project_id,body.title,body.body,body.priority,body.tags);
+  }else{
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
 });
-
-
-tags.getTagIDs(["a","b","c"]);

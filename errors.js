@@ -13,7 +13,8 @@ exports.DONE = 0;
 exports.ERROR = 400;
 exports.SESSION_NOT_FOUND = 408;
 exports.SESSION_IS_CLOSED = 409;
-
+exports.PROJECT_NOT_FOUND = 410;
+exports.INSUFFICIENT_ACCESS = 411;
 
 exports.errorCode = 
 {
@@ -31,6 +32,7 @@ exports.errorCode =
     408:"Session not found",
     409:"Session is closed",
     410:"Project not found",
+    411:"Insufficient Access Level",
 }
 exports.validUsername = function(username){
     if(typeof username != 'string')

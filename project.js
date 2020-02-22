@@ -1,7 +1,7 @@
 const errors = require('./errors');
 const logger = require('./logger');
 const pool = require("./database");
-accessLevel = {
+exports.accessLevel = {
     root:0,
     edit:1,
     view:2,
@@ -24,7 +24,7 @@ exports.createProject = async function(resBuilder, rootUser, projectName){
     try{
         const rows = await pool.query(query,[rootUser,projectName,0]);
         const projectID = rows[1][0].project_id;
-        changeProjectAccess(rootUser,projectID,accessLevel.root);
+        changeProjectAccess(rootUser,projectID,exports.accessLevel.root);
         resBuilder.success().end();
     } catch(err){
         logger.sqlErr(err);
@@ -72,6 +72,37 @@ async function changeProjectAccess(username, projectID, accessLevel){
         return true;
     } catch(err){
         logger.log(err);
+        return false;
+    }
+}
+
+exports.verifyAccessLevel = async function(username,projectID,requiredAccess){
+    logger.log(`Checking access level for ${username}--required=${requiredAccess}`);
+    if(username == null){
+        logger.log("username is null");
+        return false;
+    }
+    var query = `SELECT username, access_level 
+            FROM project_access pa 
+            WHERE username = ? AND project_id = ?;`
+    try{
+        const rows = await pool.query(query,[username,projectID]);
+        console.log(rows);
+        if(rows.length == 0){
+            //user has no access record for the project at all
+            logger.log("Insufficient Access--Undefined")
+            return false;
+        }
+        if(rows[0].access_level > requiredAccess){
+            //user's access is insufficient
+            logger.log(`Insufficient Access--${rows[0].access_level} (${requiredAccess} required)`);
+            return false
+        }
+        //user has sufficient access to project
+        logger.log("Sufficient Access");
+        return true;
+    } catch(err){
+        logger.sqlErr(err);
         return false;
     }
 }

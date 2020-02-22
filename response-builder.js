@@ -43,6 +43,6 @@ module.exports = class ResponseBuilder{
         return this;
     }
     static send(responseBuilder){
-        responseBuilder.res.json(responseBiulder.json);
+        responseBuilder.res.json(responseBuilder.json);
     }
 }
