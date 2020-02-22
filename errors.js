@@ -30,6 +30,7 @@ exports.errorCode =
     407:"Incorrect Login Credentials",
     408:"Session not found",
     409:"Session is closed",
+    410:"Project not found",
 }
 exports.validUsername = function(username){
     if(typeof username != 'string')

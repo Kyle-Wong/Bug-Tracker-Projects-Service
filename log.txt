@@ -1,11 +1,5 @@
-[2020-02-20 06:37:01] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
-[2020-02-20 06:37:01] {"host":"localhost","port":"9875"}
-[2020-02-20 06:37:01] "Server listening at :::9875"
-[2020-02-20 06:37:02] "Get all tags"
-[2020-02-20 06:37:06] "Create tag"
-[2020-02-20 06:37:06] {"tag_name":"urgent2"}
-[2020-02-20 06:37:06] "Creating tag:urgent2"
-[2020-02-20 06:37:06] {"message":"Duplicate entry 'urgent2' for key 'tags.tag_name'","errno":1062,"sql":"INSERT INTO tags(tag_name) VALUES('urgent2')"}
-[2020-02-20 06:37:13] "Create tag"
-[2020-02-20 06:37:13] {"tag_name":"URgent2"}
-[2020-02-20 06:37:13] "Creating tag:URgent2"
+[2020-02-22 00:19:39] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-02-22 00:19:39] {"host":"localhost","port":"9875"}
+[2020-02-22 00:19:39] "Server listening at :::9875"
+[2020-02-22 00:19:41] "Adding bug"
+[2020-02-22 00:19:41] {"project_id":18,"title":"Text is wrong color","body":"The text of the website is green, not red","priority":5,"tags":["another bug","colors","WTF"]}

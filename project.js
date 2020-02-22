@@ -1,6 +1,6 @@
 const errors = require('./errors');
 const logger = require('./logger');
-
+const pool = require("./database");
 accessLevel = {
     root:0,
     edit:1,
@@ -9,7 +9,7 @@ accessLevel = {
 
 
 
-exports.createProject = async function(pool, resBuilder, rootUser, projectName){
+exports.createProject = async function(resBuilder, rootUser, projectName){
     var errorCode = errors.validUsername(rootUser);
     if(errorCode != 0){
         resBuilder.default(errorCode).end();
@@ -24,7 +24,7 @@ exports.createProject = async function(pool, resBuilder, rootUser, projectName){
     try{
         const rows = await pool.query(query,[rootUser,projectName,0]);
         const projectID = rows[1][0].project_id;
-        changeProjectAccess(pool,rootUser,projectID,accessLevel.root);
+        changeProjectAccess(rootUser,projectID,accessLevel.root);
         resBuilder.success().end();
     } catch(err){
         logger.sqlErr(err);
@@ -38,13 +38,13 @@ exports.createProject = async function(pool, resBuilder, rootUser, projectName){
     
 
 }
-exports.allowProjectAccess = async function(pool, resBuilder, username, projectID, accessLevel){
+exports.allowProjectAccess = async function(resBuilder, username, projectID, accessLevel){
     var errorCode = errors.validUsername(username);
     if(errorCode != 0){
         resBuilder.default(errorCode).end();
     }
 
-    var success = changeProjectAccess(pool,username,projectID,accessLevel);
+    var success = changeProjectAccess(username,projectID,accessLevel);
     if(success)
         resBuilder.success().end();
     else
@@ -52,7 +52,7 @@ exports.allowProjectAccess = async function(pool, resBuilder, username, projectI
 }
 
 
-exports.addUser = async function(pool, resBuilder, username, email, isActive, accountType){
+exports.addUser = async function(resBuilder, username, email, isActive, accountType){
     logger.log(`Registering ${username} to db`);
     var query = `INSERT INTO users VALUES(?,?,?,?)`
     try{
@@ -64,9 +64,9 @@ exports.addUser = async function(pool, resBuilder, username, email, isActive, ac
     }
 }
 
-async function changeProjectAccess(pool, username, projectID, accessLevel){
+async function changeProjectAccess(username, projectID, accessLevel){
     var query = `INSERT INTO project_access VALUES (?,?,?)
-                ON DUPLICATE KEY UPDATE accessLevel=?`;
+                ON DUPLICATE KEY UPDATE access_level=?`;
     try{
         await pool.query(query,[username,projectID,accessLevel,accessLevel]);
         return true;

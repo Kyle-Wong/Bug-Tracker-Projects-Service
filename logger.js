@@ -12,7 +12,11 @@ exports.log = function(text){
 };
 exports.sqlErr = function(err){
     date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-    var text = {message:err.sqlMessage,errno:err.errno,sql:err.sql}    
-    console.log(text);
+    if(err.sql != undefined){
+        var text = {message:err.sqlMessage,errno:err.errno,sql:err.sql}  
+        console.log(text);  
+    } else {
+        console.log(err);
+    }
     fs.appendFile(logName,`[${date}] ${JSON.stringify(text)}\n`,function(err){if (err) throw err;});
 }
