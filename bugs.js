@@ -4,6 +4,8 @@ const tags = require('./tags');
 const moment = require('moment');
 const pool = require("./database");
 
+const bugsPerPage = 10;
+
 exports.addBug = async function(resBuilder, username, projectID,title, body, priority, tag_names){
     var query = `INSERT INTO bugs(project_id,title,body,create_time,resolved,is_deleted,priority,created_by)
                 VALUES(?,?,?,?,?,?,?); SELECT LAST_INSERT_ID() as bug_id;`;
@@ -132,6 +134,80 @@ exports.removeBugFromUser = async function(resBuilder, username,bugID){
     }
 }
 
-exports.getBugList = async function(resBuilder){
+exports.getBugList = async function(resBuilder, projectID, searchString, pageIndex,orderBy, orderDirection, includeResolved, tagsFilter){
+    /*
+        searchString:char string that returns matches in title and body
+        pageIndex:page of results, beginning at 1. Each page is 10 results
+        orderBy: order results by name, priority, create time
+        includeResolved: include or exclude resolved bugs
+        tagsFilter: array of string tags, filter out results that have zero of these tags.
+    */
+    var tagFilterString = "";
+    var query = `SELECT bugs.bug_id,bugs.title, bugs.body, bugs.create_time, bugs.resolved, bugs.priority, bugs.created_by, GROUP_CONCAT(userbugs.username SEPARATOR ";;") as workers, tag_names`;
+    query += `\nFROM bugs LEFT JOIN userbugs ON bugs.bug_id = userbugs.bug_id`;
+    if(tagsFilter.length > 0){
+        //looks like: ?,?,?
+        var tempArray = new Array(tagsFilter.length);
+        tempArray.fill("?");
+        tagFilterString += tempArray.join(",");
+        
+        query += `,\n(SELECT bug_id, GROUP_CONCAT(tag_name SEPARATOR ";;") as tag_names
+                        FROM bugtags bt, tags t
+                        WHERE bt.tag_id = t.tag_id AND
+                        bt.bug_id IN(
+                                    SELECT bug_id
+                                    FROM bugtags bt, tags t
+                                    WHERE bt.tag_id = t.tag_id AND t.tag_name IN (${tagFilterString})
+                                    GROUP BY bug_id)
+                        GROUP BY bug_id) tag_filter`;
+    } else {
+        query += `,(SELECT b.bug_id, GROUP_CONCAT(tag_name SEPARATOR ";;") as tag_names
+                    FROM bugs b LEFT JOIN bugtags bt ON b.bug_id = bt.bug_id
+                    LEFT JOIN tags t ON t.tag_id = bt.tag_id
+                    GROUP BY bug_id) tag_filter`;
+    }
+    query += "\nWHERE project_id = 18";
+    query = (typeof searchString === 'undefined' || searchString == "") ? query : query + "\nAND (title LIKE ? OR body LIKE ?)";
+    query = (includeResolved == "true") ? query : query + "\nAND bugs.resolved = 0";
+    query += "\nAND bugs.bug_id = tag_filter.bug_id";
+    query += "\nAND bugs.is_deleted = 0";
+    query += "\nGROUP BY bugs.bug_id";
+    query += "\nORDER BY ? ?";
+    query += "\nLIMIT ?, ?"
+
+    var itemArray = [];
+    if(tagsFilter.length > 0){
+        itemArray.push(...tagsFilter)
+    }
+    if(typeof searchString !== 'undefined' && searchString != "")
+        itemArray.push(`%${searchString}%`,`%${searchString}%`);
+    itemArray.push(orderBy,orderDirection,pageIndex*bugsPerPage,bugsPerPage);
+    console.log(query);
+    logger.log(itemArray);
+    try{
+        const rows = await pool.query(query,itemArray);
+        var bugList = Array(rows.length);
+        for(var i = 0; i < rows.length; i++){
+            var workers = (rows[i].workers) ? rows[i].workers.split(";;") : [];
+            var tag_names = (rows[i].tag_names) ? rows[i].tag_names.split(";;") : [];
+            bugList[i] = {
+                bug_id:rows[i].bug_id,
+                title:rows[i].title,
+                body:rows[i].body,
+                create_time:rows[i].create_time,
+                resolved:rows[i].resolved,
+                created_by:rows[i].created_by,
+                workers:workers,
+                tag_names:tag_names,
+            }
+        }
+        logger.log(bugList);
+        resBuilder.json["bugs"] = bugList;
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err);
+        return resBuilder.error(err).end();
+    }
+
 
 }

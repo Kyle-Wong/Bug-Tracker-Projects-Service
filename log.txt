@@ -1,16 +1,123 @@
-[2020-02-22 23:26:39] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
-[2020-02-22 23:26:39] {"host":"localhost","port":"9875"}
-[2020-02-22 23:26:39] "Server listening at :::9875"
-[2020-02-22 23:26:41] "assigning bug to user"
-[2020-02-22 23:26:41] {"project_id":18,"bug_id":20,"username":"testUser2"}
-[2020-02-22 23:26:41] "Checking access level for testUser1--required=1"
-[2020-02-22 23:26:41] "Sufficient Access"
-[2020-02-22 23:26:41] {"message":"Duplicate entry 'testUser1-20' for key 'userbugs.PRIMARY'","errno":1062,"sql":"INSERT INTO userbugs(username, bug_id) VALUES ('testUser1',20);"}
-[2020-02-22 23:28:05] {"project_id":18,"bug_id":20,"username":"testUser2"}
-[2020-02-22 23:28:05] "Checking access level for testUser1--required=1"
-[2020-02-22 23:28:05] "Removing bug from user"
-[2020-02-22 23:28:05] "Sufficient Access"
-[2020-02-22 23:28:07] "Removing bug from user"
-[2020-02-22 23:28:07] {"project_id":18,"bug_id":20,"username":"testUser2"}
-[2020-02-22 23:28:07] "Checking access level for testUser1--required=1"
-[2020-02-22 23:28:07] "Sufficient Access"
+[2020-02-23 01:47:56] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-02-23 01:47:56] {"host":"localhost","port":"9875"}
+[2020-02-23 01:47:56] "Server listening at :::9875"
+[2020-02-23 01:47:58] "Getting list of bugs"
+[2020-02-23 01:47:58] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:47:58] {"page":"0","order":"title","direction":"asc","includeResolved":"true"}
+[2020-02-23 01:47:58] ["title","asc",0,3]
+[2020-02-23 01:47:58] [{"bug_id":20,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":["testUser1"],"tag_names":["tag1","tag2"]},{"bug_id":21,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser1","workers":["testUser1"],"tag_names":["tag1"]},{"bug_id":22,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":["testUser1","testUser2"],"tag_names":["tag1","tag2","tag3"]}]
+[2020-02-23 01:48:04] "Getting list of bugs"
+[2020-02-23 01:48:04] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:48:04] {"page":"0","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:48:04] ["title","desc",0,3]
+[2020-02-23 01:48:04] [{"bug_id":20,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":["testUser1"],"tag_names":["tag1","tag2"]},{"bug_id":21,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser1","workers":["testUser1"],"tag_names":["tag1"]},{"bug_id":22,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":["testUser1","testUser2"],"tag_names":["tag1","tag2","tag3"]}]
+[2020-02-23 01:48:21] "Getting list of bugs"
+[2020-02-23 01:48:23] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:48:23] {"search":"bug","page":"0","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:48:23] ["%bug%","%bug%","title","desc",0,3]
+[2020-02-23 01:48:23] [{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]}]
+[2020-02-23 01:48:29] "Getting list of bugs"
+[2020-02-23 01:48:29] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:48:29] {"search":"bug","page":"0","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:48:29] ["%bug%","%bug%","title","desc",0,3]
+[2020-02-23 01:48:29] [{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]}]
+[2020-02-23 01:48:30] "Getting list of bugs"
+[2020-02-23 01:48:30] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:48:30] {"search":"bug","page":"0","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:48:30] ["%bug%","%bug%","title","desc",0,3]
+[2020-02-23 01:48:30] [{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]}]
+[2020-02-23 01:48:30] "Getting list of bugs"
+[2020-02-23 01:48:30] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:48:30] {"search":"bug","page":"0","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:48:30] ["%bug%","%bug%","title","desc",0,3]
+[2020-02-23 01:48:30] [{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]}]
+[2020-02-23 01:48:31] "Getting list of bugs"
+[2020-02-23 01:48:31] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:48:31] {"search":"bug","page":"0","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:48:31] ["%bug%","%bug%","title","desc",0,3]
+[2020-02-23 01:48:31] [{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]}]
+[2020-02-23 01:49:04] "Getting list of bugs"
+[2020-02-23 01:49:10] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:49:10] {"search":"bug","page":"1","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:49:10] ["%bug%","%bug%","title","desc",3,3]
+[2020-02-23 01:49:10] []
+[2020-02-23 01:49:36] "Getting list of bugs"
+[2020-02-23 01:49:43] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:49:43] {"page":"1","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:49:43] ["title","desc",3,3]
+[2020-02-23 01:49:43] [{"bug_id":23,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":25,"title":"testTitle","body":"asdf","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:49:45] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:49:45] "Getting list of bugs"
+[2020-02-23 01:49:45] {"page":"1","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:49:45] ["title","desc",3,3]
+[2020-02-23 01:49:45] [{"bug_id":23,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":25,"title":"testTitle","body":"asdf","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:49:48] "Getting list of bugs"
+[2020-02-23 01:49:48] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:49:48] {"search":"bug","page":"1","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:49:48] ["%bug%","%bug%","title","desc",3,3]
+[2020-02-23 01:49:48] []
+[2020-02-23 01:49:51] "Getting list of bugs"
+[2020-02-23 01:49:51] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:49:51] {"page":"1","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:49:51] ["title","desc",3,3]
+[2020-02-23 01:49:51] [{"bug_id":23,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":24,"title":"bug bug bug","body":"12331","create_time":"2020-02-23T00:11:54.000Z","resolved":1,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":25,"title":"testTitle","body":"asdf","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:50:11] "Getting list of bugs"
+[2020-02-23 01:50:15] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:50:15] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:50:15] ["title","desc",6,3]
+[2020-02-23 01:50:15] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:36] "Getting list of bugs"
+[2020-02-23 01:51:36] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:36] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:36] ["title","desc",6,3]
+[2020-02-23 01:51:36] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:37] "Getting list of bugs"
+[2020-02-23 01:51:37] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:37] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:37] ["title","desc",6,3]
+[2020-02-23 01:51:37] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:38] "Getting list of bugs"
+[2020-02-23 01:51:38] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:38] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:38] ["title","desc",6,3]
+[2020-02-23 01:51:38] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:38] "Getting list of bugs"
+[2020-02-23 01:51:38] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:38] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:38] ["title","desc",6,3]
+[2020-02-23 01:51:38] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:39] "Getting list of bugs"
+[2020-02-23 01:51:39] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:39] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:39] ["title","desc",6,3]
+[2020-02-23 01:51:39] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:41] "Getting list of bugs"
+[2020-02-23 01:51:41] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:41] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:41] ["title","desc",6,3]
+[2020-02-23 01:51:41] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:43] "Getting list of bugs"
+[2020-02-23 01:51:43] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:43] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:43] ["title","desc",6,3]
+[2020-02-23 01:51:43] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:45] "Getting list of bugs"
+[2020-02-23 01:51:45] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:45] {"search":"bug","page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:45] ["%bug%","%bug%","title","desc",6,3]
+[2020-02-23 01:51:45] []
+[2020-02-23 01:51:47] "Getting list of bugs"
+[2020-02-23 01:51:47] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:47] {"search":"bug","page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:47] ["%bug%","%bug%","title","desc",6,3]
+[2020-02-23 01:51:47] []
+[2020-02-23 01:51:48] "Getting list of bugs"
+[2020-02-23 01:51:48] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:48] {"page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:48] ["title","desc",6,3]
+[2020-02-23 01:51:48] [{"bug_id":26,"title":"testTitle","body":"asdfqwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]},{"bug_id":27,"title":"testTitle","body":"qwer","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser2","workers":[],"tag_names":[]},{"bug_id":28,"title":"testTitle","body":"bodytext","create_time":"2020-02-23T00:11:54.000Z","resolved":0,"created_by":"testUser1","workers":[],"tag_names":[]}]
+[2020-02-23 01:51:51] "Getting list of bugs"
+[2020-02-23 01:51:51] {"project_id":18,"tags_filter":[]}
+[2020-02-23 01:51:51] {"search":"bug","page":"2","order":"title","direction":"desc","includeResolved":"true"}
+[2020-02-23 01:51:51] ["%bug%","%bug%","title","desc",6,3]
+[2020-02-23 01:51:51] []

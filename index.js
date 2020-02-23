@@ -136,3 +136,33 @@ app.post('/removeBugFromUser', async function(req, res){
   }
 });
 
+app.post("/getBugList", async function(req, res){
+  /*
+    body: project_id, tags_filter
+    query: search string, page num, result order, order direction, include resolved
+  */
+  logger.log("Getting list of bugs");
+  var body = req.body;
+  var headers = req.headers;
+  var query = req.query;
+  
+  const page = parseInt(query.page);
+  if(Number.isNaN(page)){
+    page = 0;
+  }
+  if(!["title","create_time","priority"].includes(query.order.toLowerCase())){
+    query.order = "title"
+  }
+  if(!["asc","desc"].includes(query.direction.toLowerCase())){
+    query.direction = "desc"
+  }
+  if(!["true","false"].includes(query.includeResolved.toLowerCase())){
+    query.includeResolved = "true";
+  }
+  logger.log(body);
+  logger.log(query);
+  bugs.getBugList(new ResponseBuilder(res),body.project_id,query.search,query.page,
+    query.order,query.direction,query.includeResolved,body.tags_filter);
+
+});
+
