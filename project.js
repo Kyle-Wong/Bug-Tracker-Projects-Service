@@ -106,3 +106,28 @@ exports.verifyAccessLevel = async function(username,projectID,requiredAccess){
         return false;
     }
 }
+
+exports.getProjectList = async function(resBuilder,username){
+
+    var query = `SELECT * FROM projects WHERE root_user=? AND is_deleted = 0 ORDER BY project_name`;
+    try{
+        const rows = await pool.query(query,[username]);
+        resBuilder.json["projects"] = rows;
+        logger.log(rows);
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err);
+        return resBuilder.error(err).end();
+    }
+}
+exports.deleteProject = async function(resBuilder,username,projectID){
+    var query = `UPDATE projects SET is_deleted=1 WHERE projectID=? AND root_user=?`;
+    try{
+        const rows = await pool.query(query,[username,projectID]);
+        logger.log(rows);
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err);
+        return resBuilder.error(err).end();
+    }
+}

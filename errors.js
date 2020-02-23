@@ -78,6 +78,3 @@ exports.validProjectName = function(projectName){
         return 401;
     return 0;
 }
-exports.validSearch = function(headers,body,query){
-    
-}

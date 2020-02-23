@@ -48,6 +48,26 @@ exports.addTagsToBug = async function(bugID,tagList){
         logger.sqlErr(err);
     }
 }
+exports.removeTagsFromBug = async function(resBuilder, bugID, tag_names){
+    
+    const tagList = await tags.getTagIDs(tag_names);
+    var tagIDs = new Array(tagList.length);
+    for(var i = 0; i < tagList.length; i++){
+        tagIDs[i] = tagList[i].tag_id;
+    }
+    var array1 = new Array(tagList.length);
+    array1.fill("?");
+
+    var query = `DELETE FROM bugtags WHERE bug_id=? AND tag_id IN (${array1.join(",")})`;
+    try{
+        const rows = await pool.query(query,[bugID,...tagIDs]);
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err);
+        return resBuilder.error(err).end();
+    }
+
+}
 exports.updateTagsForBug = async function(bugID, tagList){
     //remove all tags, then add new list
     var array1 = new Array(tagList.length).fill("(?,?)");

@@ -56,6 +56,25 @@ app.post('/createProject', function(req,res){
   project.createProject(new ResponseBuilder(res),headers.username,body.project_name);
 });
 
+app.post('/deleteProject', async function(req,res){
+  logger.log("Deleting project");
+  var body = req.body;
+  var headers = req.headers;
+  logger.log(req.body);
+  const hasProjectAccess = await project.verifyAccessLevel(headers.username,body.project_id, project.accessLevel.root);
+  if(hasProjectAccess)
+    project.deleteProject(new ResponseBuilder(res),headers.username,body.project_name);
+  else{
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
+});
+
+app.get('/getProjectList', async function(req,res){
+  logger.log("Getting project list");
+  var headers = req.headers;
+  project.getProjectList(new ResponseBuilder(res),headers.username);
+});
+
 //Tags
 app.get('/getAllTags', function(req,res){
   logger.log("Get all tags");
@@ -67,6 +86,18 @@ app.post('/createTag', function(req,res){
   var body = req.body;
   logger.log(body);
   tags.createTag(new ResponseBuilder(res),body.tag_name);
+});
+
+app.post("/removeTag", async function(req,res){
+  logger.log("Removing bugs");
+  var body = req.body;
+  logger.log(body);
+  const hasProjectAccess = await project.verifyAccessLevel(headers.username,body.project_id, project.accessLevel.edit);
+  if(hasProjectAccess)
+    bugs.removeTagsFromBug(new ResponseBuilder(res),body.bug_id,body.tag_names);
+  else{
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
 });
 
 //bugs
