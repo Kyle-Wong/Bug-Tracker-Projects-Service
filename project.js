@@ -131,3 +131,42 @@ exports.deleteProject = async function(resBuilder,username,projectID){
         return resBuilder.error(err).end();
     }
 }
+exports.getInvitationList = async function(resBuilder,username){
+    var query = `SELECT p.project_id, project_name, root_user, access_level
+                FROM invitations i, projects p
+                WHERE p.project_id = i.project_id
+                AND p.is_deleted=0 AND i.invited=?;`;
+    try{
+        const rows = await pool.query(query,[username]);
+        resBuilder.json["invitations"] = rows;
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err).end();
+        return resBuilder.error(err).end();
+    }
+}
+exports.inviteUser = async function(resBuilder,invited,projectID, accessLevel){
+    var query = `INSERT INTO invitations VALUES(?,?,?);`
+    try{
+        const rows = await pool.query(query,[invited,projectID,accessLevel]);
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err).end();
+        return resBuilder.error(err).end();
+    }
+}
+exports.resolveInvitation = async function(resBuilder, username, projectID, accepted){
+    var query = `SELECT * FROM invitations WHERE invited=? AND project_id=?;
+                DELETE FROM invitations WHERE invited=? AND project_id=?;`;
+    try{
+        const rows = await pool.query(query,[username,projectID,username,projectID]);
+        logger.log(rows);
+        if(accepted){
+            await changeProjectAccess(username,projectID,rows[0][0].access_level);
+        }
+        return resBuilder.success().end();
+    } catch(err){
+        logger.sqlErr(err);
+        return resBuilder.error(err).end();
+    }
+}

@@ -16,7 +16,7 @@ exports.SESSION_IS_CLOSED = 409;
 exports.PROJECT_NOT_FOUND = 410;
 exports.INSUFFICIENT_ACCESS = 411;
 exports.USER_ALREADY_ASSIGNED = 412;
-
+exports.USER_ALREADY_ACCESSED = 413;
 exports.errorCode = 
 {
     0:"Done",
@@ -35,6 +35,7 @@ exports.errorCode =
     410:"Project not found",
     411:"Insufficient Access Level",
     412:"User already assigned to bug",
+    413:"User already has access to project",
 }
 exports.validUsername = function(username){
     if(typeof username != 'string')

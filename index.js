@@ -197,3 +197,44 @@ app.post("/getBugList", async function(req, res){
 
 });
 
+//invitations
+app.get('/getInvitations', async function(req,res){
+  logger.log("Getting invitation list");
+  var headers = req.headers;
+  project.getInvitationList(new ResponseBuilder(res),headers.username);
+});
+
+app.post('/inviteUser', async function(req,res){
+  logger.log("Inviting user to project");
+  var body = req.body;
+  var headers = req.headers;
+  logger.log(body);
+  const validAccessLevel = await project.verifyAccessLevel(headers.username,body.project_id,project.accessLevel.root);
+  const alreadyHasAccess = await project.verifyAccessLevel(body.invited,body.project_id,2);
+  if(validAccessLevel){
+    if(!alreadyHasAccess)
+      project.inviteUser(new ResponseBuilder(res),body.invited,body.project_id,body.access_level);
+    else{
+      logger.log(`User(${body.invited}) already has access`);
+      new ResponseBuilder(res).default(errors.USER_ALREADY_ACCESSED).end();
+
+    }
+  } else {
+    //inviter isn't root user (can't invite) or invited already has access
+    new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
+  }
+});
+
+app.post('/resolveInvitation', async function(req,res){
+  logger.log("Resolving invitation");
+  var body = req.body;
+  var headers = req.headers;
+  var query = req.query;
+  var accepted;
+  if(query.accepted === 'true'){
+    accepted = true;
+  } else {
+    accepted = false;
+  }
+  project.resolveInvitation(new ResponseBuilder(res),headers.username,body.project_id,accepted);
+});
