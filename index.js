@@ -39,7 +39,7 @@ var server = app.listen(serverConfig.port, function(){
 })
 
 
-app.post('/addUser', function(req,res){
+app.post('/prjt/user/add', function(req,res){
   logger.log("Adding user");
   var body = req.body;
   logger.log(body);
@@ -48,7 +48,7 @@ app.post('/addUser', function(req,res){
 
 
 //Project
-app.post('/createProject', function(req,res){
+app.post('/prjt/project/add', function(req,res){
   logger.log("Create Project")
   var body = req.body;
   var headers = req.headers;
@@ -56,7 +56,7 @@ app.post('/createProject', function(req,res){
   project.createProject(new ResponseBuilder(res),headers.username,body.project_name);
 });
 
-app.post('/deleteProject', async function(req,res){
+app.post('/prjt/project/delete', async function(req,res){
   logger.log("Deleting project");
   var body = req.body;
   var headers = req.headers;
@@ -69,27 +69,27 @@ app.post('/deleteProject', async function(req,res){
   }
 });
 
-app.get('/getProjectList', async function(req,res){
+app.get('/prjt/project/getAll', async function(req,res){
   logger.log("Getting project list");
   var headers = req.headers;
   project.getProjectList(new ResponseBuilder(res),headers.username);
 });
 
 //Tags
-app.get('/getAllTags', function(req,res){
+app.get('/prjt/tag/getAll', function(req,res){
   logger.log("Get all tags");
   tags.getAllTags(new ResponseBuilder(res));
 });
 
-app.post('/createTag', function(req,res){
+app.post('/prjt/tag/add', function(req,res){
   logger.log("Create tag");
   var body = req.body;
   logger.log(body);
   tags.createTag(new ResponseBuilder(res),body.tag_name);
 });
 
-app.post("/removeTag", async function(req,res){
-  logger.log("Removing bugs");
+app.post("/prjt/tag/remove", async function(req,res){
+  logger.log("Removing tags");
   var body = req.body;
   logger.log(body);
   const hasProjectAccess = await project.verifyAccessLevel(headers.username,body.project_id, project.accessLevel.edit);
@@ -101,7 +101,7 @@ app.post("/removeTag", async function(req,res){
 });
 
 //bugs
-app.post('/addBug', async function(req,res){
+app.post('/prjt/bug/add', async function(req,res){
   logger.log("Adding bug");
 
   var body = req.body;
@@ -115,7 +115,7 @@ app.post('/addBug', async function(req,res){
   }
 });
 
-app.post('/deleteBug', async function(req, res){
+app.post('/prjt/bug/delete', async function(req, res){
   logger.log("Deleting bug");
   var body = req.body;
   var headers = req.headers;
@@ -128,7 +128,7 @@ app.post('/deleteBug', async function(req, res){
   }
 });
 
-app.post('/resolveBug', async function(req, res){
+app.post('/prjt/bug/resolve', async function(req, res){
   logger.log("Resolving bug");
   var body = req.body;
   var headers = req.headers;
@@ -141,7 +141,7 @@ app.post('/resolveBug', async function(req, res){
   }
 });
 
-app.post('/assignBugToUser', async function(req,res){
+app.post('/prjt/bug/assign', async function(req,res){
   logger.log("assigning bug to user");
   var body = req.body;
   var headers = req.headers;
@@ -154,7 +154,7 @@ app.post('/assignBugToUser', async function(req,res){
   }
 });
 
-app.post('/removeBugFromUser', async function(req, res){
+app.post('/prjt/bug/unassign', async function(req, res){
   logger.log("Removing bug from user");
   var body = req.body;
   var headers = req.headers;
@@ -167,7 +167,7 @@ app.post('/removeBugFromUser', async function(req, res){
   }
 });
 
-app.post("/getBugList", async function(req, res){
+app.post("/prjt/bug/get", async function(req, res){
   /*
     body: project_id, tags_filter
     query: search string, page num, result order, order direction, include resolved
@@ -198,13 +198,13 @@ app.post("/getBugList", async function(req, res){
 });
 
 //invitations
-app.get('/getInvitations', async function(req,res){
+app.get('/prjt/invite/getAll', async function(req,res){
   logger.log("Getting invitation list");
   var headers = req.headers;
   project.getInvitationList(new ResponseBuilder(res),headers.username);
 });
 
-app.post('/inviteUser', async function(req,res){
+app.post('/prjt/invite/send', async function(req,res){
   logger.log("Inviting user to project");
   var body = req.body;
   var headers = req.headers;
@@ -225,7 +225,7 @@ app.post('/inviteUser', async function(req,res){
   }
 });
 
-app.post('/resolveInvitation', async function(req,res){
+app.post('/prjt/invite/resolve', async function(req,res){
   logger.log("Resolving invitation");
   var body = req.body;
   var headers = req.headers;
