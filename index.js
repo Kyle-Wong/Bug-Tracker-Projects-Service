@@ -63,7 +63,7 @@ app.post('/prjt/project/delete', async function(req,res){
   logger.log(req.body);
   const hasProjectAccess = await project.verifyAccessLevel(headers.username,body.project_id, project.accessLevel.root);
   if(hasProjectAccess)
-    project.deleteProject(new ResponseBuilder(res),headers.username,body.project_name);
+    project.deleteProject(new ResponseBuilder(res),headers.username,body.project_id);
   else{
     new ResponseBuilder(res).default(errors.INSUFFICIENT_ACCESS).end();
   }

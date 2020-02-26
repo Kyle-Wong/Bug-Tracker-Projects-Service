@@ -1,21 +1,5 @@
-[2020-02-24 00:17:51] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
-[2020-02-24 00:17:51] {"host":"localhost","port":"9875"}
-[2020-02-24 00:17:51] "Server listening at :::9875"
-[2020-02-24 00:17:52] "Getting invitation list"
-[2020-02-24 00:17:59] "Inviting user to project"
-[2020-02-24 00:17:59] {"invited":"testUser4","project_id":18,"access_level":1}
-[2020-02-24 00:17:59] "Checking access level for testUser1--required=0"
-[2020-02-24 00:17:59] "Sufficient Access"
-[2020-02-24 00:17:59] "Checking access level for testUser4--required=2"
-[2020-02-24 00:17:59] "Sufficient Access"
-[2020-02-24 00:17:59] "User(testUser4) already has access"
-[2020-02-24 00:18:05] "Inviting user to project"
-[2020-02-24 00:18:05] {"invited":"testUser4","project_id":18,"access_level":1}
-[2020-02-24 00:18:05] "Checking access level for testUser1--required=0"
-[2020-02-24 00:18:05] "Checking access level for testUser4--required=2"
-[2020-02-24 00:18:05] "Sufficient Access"
-[2020-02-24 00:18:05] "Insufficient Access--Undefined"
-[2020-02-24 00:18:14] "Getting invitation list"
-[2020-02-24 00:18:19] "Getting invitation list"
-[2020-02-24 00:18:31] "Getting invitation list"
-[2020-02-24 00:18:34] "Getting invitation list"
+[2020-02-26 23:02:29] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-02-26 23:02:30] {"host":"localhost","port":"9875"}
+[2020-02-26 23:02:30] "Server listening at :::9875"
+[2020-02-26 23:03:02] "Create Project"
+[2020-02-26 23:03:02] {"project_name":"testProject1232"}
