@@ -1,5 +1,7 @@
-[2020-02-26 23:02:29] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
-[2020-02-26 23:02:30] {"host":"localhost","port":"9875"}
-[2020-02-26 23:02:30] "Server listening at :::9875"
-[2020-02-26 23:03:02] "Create Project"
-[2020-02-26 23:03:02] {"project_name":"testProject1232"}
+[2020-03-05 04:37:52] {"host":"localhost","user":"root","password":"Hybrid023k","port":"3306","database":"bt_projects","connectionLimit":"10","multipleStatements":true}
+[2020-03-05 04:37:52] {"host":"localhost","port":"9875"}
+[2020-03-05 04:37:52] "Server listening at :::9875"
+[2020-03-05 04:39:25] "Adding user"
+[2020-03-05 04:39:25] {"username":"testUser2","email":"kyrptic1@gmail.com","is_active":1,"account_type":5}
+[2020-03-05 04:39:25] "Registering testUser2 to db"
+[2020-03-05 04:39:25] {"code":"ER_DUP_ENTRY","errno":1062,"sqlMessage":"Duplicate entry 'testUser2' for key 'users.PRIMARY'","sqlState":"23000","index":0,"sql":"INSERT INTO users VALUES('testUser2','kyrptic1@gmail.com',1,5)"}
