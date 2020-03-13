@@ -56,7 +56,8 @@ app.post("/prjt/project/add", function(req, res) {
   project.createProject(
     new ResponseBuilder(res),
     headers.username,
-    body.project_name
+    body.project_name,
+    body.body
   );
 });
 
@@ -260,15 +261,18 @@ app.post("/prjt/bug/get", async function(req, res) {
   }
   logger.log(body);
   logger.log(query);
+  let { searchWords, tags } = bugs.splitSearchTerms(query.search);
+  console.log(searchWords);
+  console.log(tags);
   bugs.getBugList(
     new ResponseBuilder(res),
     body.project_id,
-    query.search,
+    searchWords,
     query.page,
     query.order,
     query.direction,
     query.includeResolved,
-    body.tags_filter
+    tags
   );
 });
 

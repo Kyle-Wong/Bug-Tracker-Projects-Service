@@ -7,7 +7,12 @@ exports.accessLevel = {
   view: 2
 };
 
-exports.createProject = async function(resBuilder, rootUser, projectName) {
+exports.createProject = async function(
+  resBuilder,
+  rootUser,
+  projectName,
+  body
+) {
   var errorCode = errors.validUsername(rootUser);
   if (errorCode != 0) {
     resBuilder.default(errorCode).end();
@@ -17,10 +22,10 @@ exports.createProject = async function(resBuilder, rootUser, projectName) {
     resBuilder.default(errorCode).end();
   }
 
-  var query = `INSERT INTO projects(root_user,project_name,is_deleted) VALUES (?,?,?); 
+  var query = `INSERT INTO projects(root_user,project_name,body,is_deleted) VALUES (?,?,?,?); 
     SELECT LAST_INSERT_ID() as project_id;`;
   try {
-    const rows = await pool.query(query, [rootUser, projectName, 0]);
+    const rows = await pool.query(query, [rootUser, projectName, body, 0]);
     const projectID = rows[1][0].project_id;
     changeProjectAccess(rootUser, projectID, exports.accessLevel.root);
     resBuilder.success().end();
@@ -132,15 +137,14 @@ exports.getProjectList = async function(resBuilder, username) {
   }
 };
 exports.getDetailedProjectList = async function(resBuilder, username) {
-  var query = `SELECT * FROM 
-              (SELECT p.project_id,p.root_user,p.project_name,p.is_deleted, COUNT(p.project_id) as active_bugs 
-              FROM bugs b, projects p
-              WHERE p.project_id = b.project_id AND
-              b.project_id IN (SELECT project_id from project_access) 
-              AND p.is_deleted = 0
-              GROUP BY p.project_id) p,
-              project_access pa
-              WHERE pa.project_id = p.project_id AND pa.username=?;`;
+  var query = `SELECT p.project_id,username,root_user,project_name,body,bug_count,access_level
+              FROM 
+                project_access pa,
+                (SELECT p.project_id,root_user,project_name,body,IFNULL(bug_count,0) as bug_count,is_deleted
+                  FROM projects p LEFT JOIN
+                  (SELECT project_id, COUNT(project_id) as bug_count FROM bugs
+                  GROUP BY project_id) asdf on p.project_id = asdf.project_id) p
+              WHERE pa.project_id = p.project_id AND username=? AND p.is_deleted=0;`;
   try {
     const rows = await pool.query(query, [username]);
     resBuilder.json["projects"] = rows;
@@ -164,9 +168,9 @@ exports.getProject = async function(resBuilder, project_id) {
   }
 };
 exports.deleteProject = async function(resBuilder, username, projectID) {
-  var query = `UPDATE projects SET is_deleted=1 WHERE projectID=? AND root_user=?`;
+  var query = `UPDATE projects SET is_deleted=1 WHERE project_id=? AND root_user=?`;
   try {
-    const rows = await pool.query(query, [username, projectID]);
+    const rows = await pool.query(query, [projectID, username]);
     logger.log(rows);
     return resBuilder.success().end();
   } catch (err) {
