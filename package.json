@@ -4,11 +4,11 @@
   "description": "Test",
   "main": "TestServer.js",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "config": "^3.2.5",
     "cookie-parser": "^1.4.4",
     "crypto": "^1.0.1",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
     "util": "^0.12.1"
